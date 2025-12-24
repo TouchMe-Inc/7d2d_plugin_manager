@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 
-namespace PluginManager;
+namespace PluginManager.Core;
 
 public interface IPluginManager
 {
-    public void Load();
     public void LoadPlugin(string path);
+    public void UnloadPlugin(string path);
     public IEnumerable<IPluginContext> GetLoadedPlugins();
 }

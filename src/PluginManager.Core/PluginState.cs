@@ -1,4 +1,4 @@
-﻿namespace PluginManager;
+﻿namespace PluginManager.Core;
 
 public enum PluginState
 {
