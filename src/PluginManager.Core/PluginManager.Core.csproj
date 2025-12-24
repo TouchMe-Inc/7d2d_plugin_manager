@@ -8,8 +8,8 @@
         <ProjectGuid>{0BCD8652-CA49-489A-9CB5-135BE750C403}</ProjectGuid>
         <OutputType>Library</OutputType>
         <AppDesignerFolder>Properties</AppDesignerFolder>
-        <RootNamespace>PluginManager</RootNamespace>
-        <AssemblyName>PluginManager</AssemblyName>
+        <RootNamespace>PluginManager.Core</RootNamespace>
+        <AssemblyName>PluginManager.Core</AssemblyName>
         <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
         <FileAlignment>512</FileAlignment>
         <LangVersion>latest</LangVersion>
@@ -40,14 +40,34 @@
         <Reference Include="System.Xml"/>
     </ItemGroup>
     <ItemGroup>
+        <Compile Include="Adapters\ClientInfoAdapter.cs"/>
         <Compile Include="Application.cs"/>
-        <Compile Include="IPluginContext.cs"/>
-        <Compile Include="IPluginLoader.cs" />
+        <Compile Include="Bridges\EventBridge.cs"/>
+        <Compile Include="Bridges\IEventBridge.cs"/>
+        <Compile Include="Capabilities\ChatMessenger\ChatMessenger.cs"/>
+        <Compile Include="Capabilities\Events\EventBus.cs"/>
+        <Compile Include="Capabilities\Logger\Logger.cs"/>
+        <Compile Include="CapabilityRegistry.cs"/>
+        <Compile Include="Commands\CommandContext.cs"/>
+        <Compile Include="Commands\CommandManager.cs"/>
+        <Compile Include="Config.cs"/>
+        <Compile Include="ConsoleCommands\PluginCmdCommand.cs"/>
+        <Compile Include="ConsoleCommands\PluginListCommand.cs"/>
+        <Compile Include="ConsoleCommands\PluginLoadCommand.cs"/>
+        <Compile Include="ConsoleCommands\PluginUnloadCommand.cs"/>
         <Compile Include="IPluginManager.cs"/>
-        <Compile Include="PluginContext.cs"/>
-        <Compile Include="PluginLoader.cs" />
+        <Compile Include="LoadedPlugin.cs"/>
+        <Compile Include="Mappers\BbCodeSupportModeMapper.cs"/>
+        <Compile Include="Mappers\ChatTypeMapper.cs"/>
+        <Compile Include="Mappers\TileEntityTypeMapper.cs"/>
+        <Compile Include="ModContext.cs"/>
+        <Compile Include="Patches\ChatMessageServerPatch.cs"/>
+        <Compile Include="Patches\OpenTileEntityAllowedPatch.cs"/>
+        <Compile Include="Patches\PlayerJoinedPatch.cs"/>
+        <Compile Include="Patches\MinEventActionLogPatch.cs"/>
+        <Compile Include="PluginBootstrap.cs"/>
+        <Compile Include="PluginInfo.cs"/>
         <Compile Include="PluginManager.cs"/>
-        <Compile Include="PluginState.cs"/>
         <Compile Include="Properties\AssemblyInfo.cs"/>
     </ItemGroup>
     <ItemGroup>
@@ -58,16 +78,20 @@
         <PackageReference Include="Lib.Harmony" Version="2.4.2"/>
     </ItemGroup>
     <ItemGroup>
-        <Reference Include="Assembly-CSharp">
-            <HintPath>D:/SteamLibrary/steamapps/common/7 Days to Die Dedicated Server/7DaysToDieServer_Data/Managed/Assembly-CSharp.dll</HintPath>
+        <Reference Include="PluginManager.Api">
+            <HintPath>../../libs/PluginManager.Api.dll</HintPath>
         </Reference>
-        <Reference Include="LogLibrary, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-            <SpecificVersion>False</SpecificVersion>
-            <HintPath>D:/SteamLibrary/steamapps/common/7 Days to Die Dedicated Server/7DaysToDieServer_Data/Managed/LogLibrary.dll</HintPath>
+        <Reference Include="Assembly-CSharp">
+            <HintPath>../../libs/Assembly-CSharp.dll</HintPath>
             <Private>False</Private>
         </Reference>
-    </ItemGroup>
-    <ItemGroup>
-        <ProjectReference Include="..\..\..\7d2d_plugin_manager_api\src\PluginManager.Api\PluginManager.Api.csproj"/>
+        <Reference Include="LogLibrary">
+            <HintPath>../../libs/LogLibrary.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
+        <Reference Include="UnityEngine.CoreModule">
+            <HintPath>../../libs/UnityEngine.CoreModule.dll</HintPath>
+            <Private>False</Private>
+        </Reference>
     </ItemGroup>
 </Project>
